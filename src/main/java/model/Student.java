@@ -93,7 +93,7 @@ public class Student  extends BaseEntity<Long> {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "section_of_study")
-    private Study study;
+    private Section section;
 
 
 
@@ -131,11 +131,10 @@ public class Student  extends BaseEntity<Long> {
                 ", address=" + address +
                 ", dormitory=" + dormitory +
                 ", spouse=" + spouse +
-                ", loans=" + loans +
-                ", bankAccounts=" + bankAccounts +
                 ", loanType=" + loanType +
                 ", paymentStatus=" + paymentStatus +
-                ", marital=" + marital +
+                ", status=" + status +
+                ", section=" + section +
                 ", id=" + id +
                 '}';
     }
