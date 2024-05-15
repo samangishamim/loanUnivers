@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-public class BaseRepositoryImpl <T extends BaseEntity<ID>
+public abstract class BaseRepositoryImpl <T extends BaseEntity<ID>
         , ID extends Serializable> implements BaseRepository<T, ID> {
 
     public SessionFactory sessionFactory;
