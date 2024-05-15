@@ -26,6 +26,6 @@
     <mapping class="model.Spouse"/>
     <mapping class="model.TypeOfUniversity"/>
     <mapping class="model.Study"/>
-    <mapping class="model.Marital"/>
+    <mapping class="model.Status"/>
   </session-factory>
 </hibernate-configuration>
