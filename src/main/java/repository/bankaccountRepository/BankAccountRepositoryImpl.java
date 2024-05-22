@@ -33,7 +33,7 @@ public class BankAccountRepositoryImpl extends BaseRepositoryImpl<BankAccount, L
     public List<BankAccount> bankAccountsStudent(Student student) {
         Session session = sessionFactory.getCurrentSession();
         Query<BankAccount> query = session.createQuery
-                ("FROM bank_account b WHERE student=:student", BankAccount.class);
+                ("FROM bankaccount b WHERE student=:student", BankAccount.class);
         query.setParameter("student", student);
 
         return query.getResultList();
@@ -42,7 +42,7 @@ public class BankAccountRepositoryImpl extends BaseRepositoryImpl<BankAccount, L
     @Override
     public Optional<BankAccount> getBankAccount(Student student, Double cardNumber) {
         Session session = sessionFactory.getCurrentSession();
-        Query<BankAccount> query = session.createQuery("FROM bank_account b " +
+        Query<BankAccount> query = session.createQuery("FROM bankaccount b " +
                 "WHERE b.student=:student and b.cardNumber=:cardNumber", BankAccount.class);
         query.setParameter("student", student);
         query.setParameter("cardNumber", cardNumber);

@@ -4,6 +4,7 @@ import base.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -26,10 +27,10 @@ public class Student  extends BaseEntity<Long> {
     private String lastName;
 
     @Column(name = "birthdate")
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @Column(name = "entrance_year")
-    private int entranceYear;
+    private LocalDate entranceYear;
 
 
     @Column(name = "father_name")
@@ -59,9 +60,6 @@ public class Student  extends BaseEntity<Long> {
 
     @Column(name = "university_name")
     private String universityName;
-
-    @Column(name = "university_type")
-    private String universityType;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
@@ -95,6 +93,10 @@ public class Student  extends BaseEntity<Long> {
     @Column(name = "section_of_study")
     private Section section;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_university", nullable = false)
+    private TypeOfUniversity typeUniversity;
+
 
 
     public void setPassword() {
@@ -127,7 +129,6 @@ public class Student  extends BaseEntity<Long> {
                 ", password='" + password + '\'' +
                 ", studentNumber='" + studentNumber + '\'' +
                 ", universityName='" + universityName + '\'' +
-                ", universityType='" + universityType + '\'' +
                 ", address=" + address +
                 ", dormitory=" + dormitory +
                 ", spouse=" + spouse +
@@ -135,6 +136,7 @@ public class Student  extends BaseEntity<Long> {
                 ", paymentStatus=" + paymentStatus +
                 ", status=" + status +
                 ", section=" + section +
+                ", typeUniversity=" + typeUniversity +
                 ", id=" + id +
                 '}';
     }

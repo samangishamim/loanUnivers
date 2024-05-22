@@ -24,7 +24,7 @@ public class Address  extends BaseEntity<Long> {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private ProvinceName province;
+    private Province province;
 
     @Column(name = "rental_agreement_number", nullable = false )
     private String rentalAgreementNumber;

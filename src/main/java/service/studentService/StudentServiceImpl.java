@@ -22,25 +22,25 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, Long , StudentR
     public List<Student> studentSignIn(String nationalId, String password) {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            Optional<List<Student>> find = repository.studentSignIn(nationalId, password);
-            find.orElseThrow(() -> new NotFoundException("Entity not found"));
+            Optional<List<Student>> optionalStudentList = repository.studentSignIn(nationalId, password);
+            optionalStudentList.orElseThrow(() -> new NotFoundException("Entity not found"));
             session.getTransaction().commit();
-            return find.get();
+            return optionalStudentList.get();
         } catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public Optional<Student> studentInfo(String nationalId) {
+    public List<Student> studentInfo(String nationalId) {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            Optional<Student> find = repository.studentInfo(nationalId);
-            find.orElseThrow(() -> new NotFoundException("Entity not found"));
+            Optional<List<Student>> optionalStudentList = repository.studentInfo(nationalId);
+            optionalStudentList.orElseThrow(() -> new NotFoundException("Entity not found"));
             session.getTransaction().commit();
-            return find;
+            return optionalStudentList.get();
         } catch (Exception e) {
-            return Optional.empty();
+            return null;
         }
     }
 }

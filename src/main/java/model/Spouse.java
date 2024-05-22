@@ -21,13 +21,13 @@ public class Spouse extends BaseEntity<Long> {
 
 
     @Column(name = "spouse_firstname")
-    private int spouseFirstName;
+    private String spouseFirstName;
 
     @Column(name = "spouse_lastname")
-    private Date spouseLastName;
+    private String spouseLastName;
 
     @Column(name = "spouse_national_id", unique = true, nullable = false)
-    private int spouseNationalId;
+    private String spouseNationalId;
 
     @OneToOne
     @JoinColumn(name = "student_id" )

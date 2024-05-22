@@ -13,9 +13,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class LoanServiceImpl extends BaseServiceImpl<Loan, Long, LoanRepository>
-        implements LoanService{
+        implements LoanService {
 
     private final SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
+
     public LoanServiceImpl(LoanRepository repository, SessionFactory sessionFactory) {
         super(repository, sessionFactory);
     }
@@ -31,15 +32,33 @@ public class LoanServiceImpl extends BaseServiceImpl<Loan, Long, LoanRepository>
     }
 
     @Override
-    public Optional<Loan> findStudentWithSemester(Student student, String semester) {
+    public Optional<Loan> findStudentWithSemester(Student student, Integer semester) {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            Optional<Loan> find = repository.findStudentWithSemester(student, semester );
+            Optional<Loan> find = repository.findStudentWithSemester(student, semester);
             find.orElseThrow(() -> new NotFoundException("Entity not found"));
             session.getTransaction().commit();
             return find;
         } catch (Exception e) {
             return Optional.empty();
+        }
+    }
+
+    @Override
+    public List<Loan> findMaskanLoanByStudentId(Long id) {
+        try (Session session = sessionFactory.getCurrentSession()) {
+            session.beginTransaction();
+          Optional<List< Loan>>  optionalLoanList =  repository.findMaskanLoanByStudentId(id);
+          optionalLoanList.orElseThrow(() -> new NotFoundException("entity not found")
+          );
+          if (optionalLoanList.get().isEmpty())
+          {
+              return null;
+          }else
+              return optionalLoanList.get();
+        }
+        catch (Exception e){
+            return  null;
         }
     }
 }

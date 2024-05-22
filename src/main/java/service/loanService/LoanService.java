@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface LoanService extends BaseService<Loan,Long> {
-    public List<Loan> findLoanByIdStudent (Student student);
-    public Optional<Loan> findStudentWithSemester (Student student , String semester);
+     List<Loan> findLoanByIdStudent (Student student);
+     Optional<Loan> findStudentWithSemester (Student student , Integer semester);
+   List<Loan> findMaskanLoanByStudentId(Long id);
 }

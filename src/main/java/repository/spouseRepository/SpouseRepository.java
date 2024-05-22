@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface SpouseRepository extends BaseRepository<Spouse, Long> {
     public Optional<Spouse> findSpouseStudent (Student student);
+
 }

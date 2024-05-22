@@ -13,19 +13,5 @@
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">false</property>
     <property name="hibernate.current_session_context_class">thread</property>
-
-    <mapping class="model.Student"/>
-    <mapping class="model.PaymentStatus"/>
-    <mapping class="model.Address"/>
-    <mapping class="model.BankAccount"/>
-    <mapping class="model.Grade"/>
-    <mapping class="model.Installment"/>
-    <mapping class="model.Loan"/>
-    <mapping class="model.LoanType"/>
-    <mapping class="model.ProvinceName"/>
-    <mapping class="model.Spouse"/>
-    <mapping class="model.TypeOfUniversity"/>
-    <mapping class="model.Section"/>
-    <mapping class="model.Status"/>
   </session-factory>
 </hibernate-configuration>

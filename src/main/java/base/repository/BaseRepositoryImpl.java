@@ -14,6 +14,7 @@ public abstract class BaseRepositoryImpl <T extends BaseEntity<ID>
 
     public SessionFactory sessionFactory;
 
+
     public BaseRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }

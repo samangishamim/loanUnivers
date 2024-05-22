@@ -2,6 +2,7 @@ package repository.studentRepository;
 
 import base.repository.BaseRepositoryImpl;
 import connection.SessionFactorySingleton;
+import exeption.NotFoundException;
 import model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,25 +33,23 @@ public class StudentRepositoryImpl extends BaseRepositoryImpl<Student, Long> imp
     @Override
     public Optional<List<Student>> studentSignIn(String nationalId, String password) {
         Session session = sessionFactory.getCurrentSession();
-        String hql ="FROM Student s WHERE s.nationalId=:nationalId AND s.password=:password ";
-        Query<Student> query = session.createQuery(hql , Student.class);
+        Query<Student> query = session.createQuery("FROM Student s where" +
+                " s.nationalId=:nationalId AND password=:password" , Student.class);
         query.setParameter("nationalId", nationalId );
         query.setParameter( "password" , password );
-        List<Student> resultList = query.getResultList();
 
-        return Optional.ofNullable(resultList);
+        List<Student> studentList = query.getResultList();
+        return Optional.ofNullable(studentList);
     }
 
     @Override
-    public Optional<Student> studentInfo(String nationalId) {
+    public Optional<List<Student>> studentInfo(String nationalId) {
         Session session = sessionFactory.getCurrentSession();
         Query<Student> query = session.createQuery("FROM Student s  " +
                 " WHERE s.nationalId=:nationalId" , Student.class);
         query.setParameter("nationalId", nationalId );
-        Student student = query.uniqueResult();
 
-        return Optional.ofNullable(query.getSingleResult());
+        List<Student> studentList = query.getResultList();
+        return  Optional.ofNullable(studentList);
     }
-
-
 }

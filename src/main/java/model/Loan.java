@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -18,13 +19,17 @@ import java.util.List;
 public class Loan extends BaseEntity<Long> {
 
     @Column(name = "loan_amount")
-    private String loanAmount;
+    private double loanAmount;
 
     @Column(name = "loan_date")
-    private String loanDate;
+    private LocalDate loanDate;
 
     @Column(name = "semester")
-    private String semester;
+    private Integer semester;
+
+    @Column(name = "loan_type")
+    @Enumerated(EnumType.STRING)
+    private LoanType loanType;
 
 
     @ManyToOne
@@ -35,19 +40,19 @@ public class Loan extends BaseEntity<Long> {
     @JoinColumn(name = "bank_account_id")
     private BankAccount bankAccount;
 
-    @OneToMany(mappedBy = "installment", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "loan", cascade = CascadeType.ALL)
     private List<Installment> installments;
 
 
     @Override
     public String toString() {
         return "Loan{" +
-                "loanAmount='" + loanAmount + '\'' +
-                ", loanDate='" + loanDate + '\'' +
-                ", semester='" + semester + '\'' +
+                "loanAmount=" + loanAmount +
+                ", loanDate=" + loanDate +
+                ", semester=" + semester +
+                ", loanType=" + loanType +
                 ", student=" + student +
                 ", bankAccount=" + bankAccount +
-                ", installments=" + installments +
                 ", id=" + id +
                 '}';
     }

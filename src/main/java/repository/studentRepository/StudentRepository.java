@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public interface StudentRepository extends BaseRepository<Student, Long> {
 
-    public Optional<List<Student>> studentSignIn(String nationalId, String password);
+     Optional<List<Student>>studentSignIn(String nationalId , String password);
 
-    public Optional<Student> studentInfo(String nationalId);
+     Optional<List<Student>> studentInfo(String nationalId);
 }
